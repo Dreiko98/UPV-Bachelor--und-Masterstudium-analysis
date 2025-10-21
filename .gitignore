@@ -144,10 +144,9 @@ Desktop.ini
 *.swo
 
 # Data files (optional - remove if you want to track data)
-*.csv
 *.xlsx
 *.xls
-*.json
+# *.json  # Comentado para permitir ciertos JSONs
 *.pickle
 *.pkl
 
