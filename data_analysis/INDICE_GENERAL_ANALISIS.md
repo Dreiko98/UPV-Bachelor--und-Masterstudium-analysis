@@ -413,18 +413,81 @@ Para cada análisis:
 
 ---
 
+### 4️⃣ Análisis de Autoeficacia
+**Carpeta:** `data_analysis/analisis_autoeficiencia/`
+
+**Variables:**
+- `autoeficacia_3_anos` (0-10 escala continua)
+- `nivel_autoeficacia` (categórica: Muy baja, Baja, Media, Alta, Muy alta)
+
+**Archivos Principales:**
+| Archivo | Tipo | Descripción |
+|---------|------|-------------|
+| `01_analisis_univariante_autoeficiencia.ipynb` | Notebook | Análisis completo con código ejecutable |
+| `README.md` | Documentación | Descripción general del análisis |
+| `ESTRUCTURA_ANALISIS_UNIVARIANTE.md` | Documentación | Metodología paso a paso |
+| `RESUMEN_ANALISIS_AUTOEFICACIA.md` | Documentación | Hallazgos y conclusiones |
+| `INSTRUCCIONES_EJECUCION.md` | Guía | Cómo ejecutar el análisis |
+
+**Gráficos Generados:**
+1. Histogramas con densidad KDE (numérica y categórica)
+2. Box plots (numérico y por nivel)
+3. Violin plots de distribución
+4. Q-Q plots de normalidad
+5. Distribución por nivel (gráfico de pie)
+6. Media de autoeficacia por categoría
+
+**Hallazgos Clave:**
+- Media: 5.77/10 (autoeficacia moderadamente alta)
+- Mediana: 6.03/10
+- Desviación estándar: 1.68
+- Distribución: NO normal (Shapiro-Wilk p < 0.05)
+- Asimetría: -0.51 (sesgo izquierdo)
+- Datos válidos: 393/483 (81.4%)
+
+**Estado:** ✅ Completado
+
+---
+
+## 📊 Tabla Comparativa de Análisis
+
+| Característica | Satisfacción | Empleabilidad | Abandono | Autoeficacia |
+|----------------|-------------|---------------|----------|--------------|
+| **Carpeta** | `analisis_satisfaccion/` | `analisis_no_desempleados/` | `analisis_tasa_abandono/` | `analisis_autoeficiencia/` |
+| **Variable Principal** | Escala 1-5 | Porcentaje % | Porcentaje % | Escala 0-10 |
+| **Datos Válidos** | 100% | 94.2% | 94.2% | 81.4% |
+| **Normalidad (Shapiro-Wilk)** | - | - | - | NO (p=0.000015) |
+| **Medida Central** | Media/Mediana | Media/Mediana | Media/Mediana | 5.77/6.03 |
+| **Gráficos** | 6 PNG (300 DPI) | 6 PNG (300 DPI) | 6 PNG (300 DPI) | 6 PNG (300 DPI) |
+| **Documentación** | 4 archivos MD | 4 archivos MD | 4 archivos MD | 4 archivos MD |
+| **Estado** | ✅ Completo | ✅ Completo | ✅ Completo | ✅ Completo |
+
+---
+
 ## 📎 Enlaces Rápidos
 
 ### Carpetas de Análisis
 - [Satisfacción](./analisis_satisfaccion/)
-- [No Desempleados](./analisis_no_desempleados/)
+- [No Desempleados (Empleabilidad)](./analisis_no_desempleados/)
 - [Tasa de Abandono](./analisis_tasa_abandono/)
+- [Autoeficacia](./analisis_autoeficiencia/) ⭐ **NUEVO**
 
 ### Datos
 - [Panel Maestro](../data_extraction/panel_maestro_UPV.csv)
 
 ### Entorno Virtual
 - [venv](../../venv/)
+
+---
+
+## 🎯 Análisis Realizados - Resumen Total
+
+**Total de Análisis**: 4 análisis univariantes
+**Total de Notebooks**: 4 (1 por análisis)
+**Total de Gráficos**: 24 visualizaciones (6 por análisis) a 300 DPI
+**Total de Documentación**: 16 archivos markdown (4 por análisis)
+**Tamaño Total**: ~4.5 MB (1.7 MB notebooks + 1.5 MB gráficos + 1.3 MB documentación)
+**Estado Global**: ✅ **COMPLETADO - 100%**
 
 ---
 
