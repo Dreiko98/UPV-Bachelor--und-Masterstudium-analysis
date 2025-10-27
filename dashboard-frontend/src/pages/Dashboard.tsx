@@ -5,6 +5,7 @@ import { IKPIData, ITemporalData, IProgram, ITitulationPerformance, ClusterType 
 import { KPICard } from '@/components/KPICard';
 import { ChartWrapper } from '@/components/ChartWrapper';
 import { Tabs } from '@/components/Tabs';
+import { AllTitulations } from '@/components/AllTitulations';
 import { TitulationSearch } from '@/components/TitulationSearch';
 
 export const Dashboard = () => {
@@ -84,6 +85,7 @@ export const Dashboard = () => {
       fill: 'tonexty',
       fillcolor: 'rgba(59, 130, 246, 0.1)',
       hovertemplate: '<b>Satisfacción</b><br>Año: %{x}<br>Score: %{y:.2f}/10<extra></extra>',
+      yaxis: 'y1',
     },
     {
       x: temporalData.map((d) => d.year),
@@ -96,6 +98,7 @@ export const Dashboard = () => {
       fill: 'tonexty',
       fillcolor: 'rgba(16, 185, 129, 0.1)',
       hovertemplate: '<b>Retención</b><br>Año: %{x}<br>Tasa: %{y:.1f}%<extra></extra>',
+      yaxis: 'y2',
     },
     {
       x: temporalData.map((d) => d.year),
@@ -108,16 +111,18 @@ export const Dashboard = () => {
       fill: 'tonexty',
       fillcolor: 'rgba(245, 158, 11, 0.1)',
       hovertemplate: '<b>Empleabilidad</b><br>Año: %{x}<br>Tasa: %{y:.1f}%<extra></extra>',
+      yaxis: 'y2',
     },
     {
       x: temporalData.map((d) => d.year),
-      y: temporalData.map((d) => d.selfEfficacy * 10), // Scale to 0-100 for comparison
-      name: 'Autoeficacia (x10)',
+      y: temporalData.map((d) => d.selfEfficacy),
+      name: 'Autoeficacia (/10)',
       type: 'scatter',
       mode: 'lines+markers',
       line: { color: '#EC4899', width: 3, dash: 'dash' },
       marker: { size: 10, opacity: 0.8 },
-      hovertemplate: '<b>Autoeficacia</b><br>Año: %{x}<br>Score: %{y:.1f}/100<extra></extra>',
+      hovertemplate: '<b>Autoeficacia</b><br>Año: %{x}<br>Score: %{y:.1f}/10<extra></extra>',
+      yaxis: 'y1',
     },
   ];
 
@@ -169,6 +174,7 @@ export const Dashboard = () => {
     { id: 'temporal', label: 'Análisis Temporal', icon: '📈', description: '2020-2024' },
     { id: 'clusters', label: 'Análisis de Clusters', icon: '🎯', description: 'Segmentación' },
     { id: 'ranking', label: 'Ranking', icon: '🏆', description: 'Top titulaciones' },
+    { id: 'todas', label: 'Todas las Carreras', icon: '📚', description: 'Catálogo completo' },
   ];
 
   return (
@@ -244,7 +250,7 @@ export const Dashboard = () => {
                     plot_bgcolor: 'rgba(15, 23, 42, 0.2)',
                     paper_bgcolor: 'transparent',
                     font: { color: '#D1D5DB', family: 'Inter', size: 12 },
-                    margin: { l: 70, r: 40, t: 40, b: 80 },
+                    margin: { l: 70, r: 70, t: 40, b: 80 },
                     xaxis: {
                       title: 'Año',
                       gridcolor: 'rgba(75, 85, 99, 0.2)',
@@ -253,11 +259,22 @@ export const Dashboard = () => {
                       tickfont: { size: 11 },
                     },
                     yaxis: {
-                      title: 'Valor',
+                      title: 'Satisfacción / Autoeficacia (/10)',
                       gridcolor: 'rgba(75, 85, 99, 0.2)',
                       showgrid: true,
                       zeroline: false,
                       tickfont: { size: 11 },
+                      range: [0, 10],
+                    },
+                    yaxis2: {
+                      title: 'Retención / Empleabilidad (%)',
+                      overlaying: 'y',
+                      side: 'right',
+                      gridcolor: 'rgba(75, 85, 99, 0.1)',
+                      showgrid: false,
+                      zeroline: false,
+                      tickfont: { size: 11 },
+                      range: [0, 100],
                     },
                     hovermode: 'x unified',
                     showlegend: true,
@@ -430,7 +447,7 @@ export const Dashboard = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {titulations.map((t) => (
+                      {titulations.slice(0, 10).map((t) => (
                         <tr key={t.ranking} className="border-b border-slate-700/50 hover:bg-slate-700/30 transition">
                           <td className="px-6 py-3">
                             <span className="font-semibold text-blue-400">{t.ranking}</span>
@@ -449,6 +466,18 @@ export const Dashboard = () => {
                   </table>
                 </div>
               </div>
+            </div>
+          )}
+
+          {/* TAB 5: TODAS LAS CARRERAS */}
+          {activeTab === 'todas' && (
+            <div className="space-y-8">
+              <div>
+                <h2 className="text-2xl font-bold text-white mb-2">Catálogo Completo de Titulaciones</h2>
+                <p className="text-gray-400 mb-6">Explora todas las carreras con tarjetas interactivas, filtros avanzados y búsqueda</p>
+              </div>
+
+              <AllTitulations titulations={titulations} />
             </div>
           )}
         </div>

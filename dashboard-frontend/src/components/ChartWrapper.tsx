@@ -52,7 +52,7 @@ export const ChartWrapper: React.FC<ChartWrapperProps> = (props) => {
 
         {/* Chart Content */}
         <div className="px-6 py-6">
-          <div className="relative">
+          <div className="relative w-full" style={{ minHeight: '500px' }}>
             {/* Subtle border effect */}
             <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-20 bg-gradient-to-b from-white to-transparent transition-opacity" style={{ pointerEvents: 'none' }} />
             {children}
