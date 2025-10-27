@@ -1,0 +1,11 @@
+# Configuración de Netlify para el Dashboard UPV
+
+[build]
+  base = "dashboard-frontend"
+  command = "npm run build"
+  publish = "dist"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
