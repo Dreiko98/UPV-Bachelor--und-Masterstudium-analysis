@@ -1,0 +1,94 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                    🚀 DEPLOY EN NETLIFY - RESUMEN RÁPIDO                   ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+✅ ESTADO ACTUAL:
+   • Build local: ✓ Compila sin errores
+   • CSV: ✓ En public/panel_maestro_UPV_LIMPIO.csv
+   • Dashboard: ✓ 5 pestañas funcionales
+   • Netlify.toml: ✓ Configurado
+   • .gitignore: ✓ Listo
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║                        📋 PASOS A SEGUIR (5 minutos)                       ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+1️⃣  PREPARAR GITHUB
+    → Abre terminal en: dashboard-frontend/
+    → Ejecuta:
+       git init
+       git add .
+       git commit -m "Dashboard UPV - Deploy inicial"
+
+2️⃣  CREAR REPOSITORIO EN GITHUB
+    → Ve a: https://github.com/new
+    → Nombre: upv-dashboard
+    → Descripción: Dashboard Panel Maestro UPV
+    → Selecciona: Public
+    → Click: Create repository
+
+3️⃣  CONECTAR CON GITHUB
+    → Copia los comandos que GitHub te muestra
+    → En terminal, ejecuta:
+       git branch -M main
+       git remote add origin https://github.com/TU_USUARIO/upv-dashboard.git
+       git push -u origin main
+    → Reemplaza TU_USUARIO con tu usuario de GitHub
+
+4️⃣  CREAR CUENTA EN NETLIFY
+    → Ve a: https://app.netlify.com/signup
+    → Selecciona: GitHub
+    → Autoriza
+    → Completa datos
+
+5️⃣  DEPLOYEAR EN NETLIFY
+    → Click: "Add new site" → "Import an existing project"
+    → Selecciona tu repositorio: upv-dashboard
+    → Confirma:
+       - Build: npm run build ✓
+       - Publish: dist ✓
+    → Click: "Deploy site"
+    → ESPERA 2-5 MINUTOS
+
+6️⃣  ¡LISTO!
+    → Tu dashboard estará en:
+       https://upv-dashboard.netlify.app
+       (o similar con el nombre de tu site)
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║                           🔗 ENLACES ÚTILES                                ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+GitHub Signup:        https://github.com/signup
+Crear Repositorio:    https://github.com/new
+Netlify Signup:       https://app.netlify.com/signup
+Guía Completa:        Ver DEPLOY_NETLIFY_PASOS.md
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║                         🆘 TROUBLESHOOTING                                  ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+❌ "CSV no carga"
+   ✓ Verifica: public/panel_maestro_UPV_LIMPIO.csv existe
+
+❌ "Error 404"
+   ✓ Verifica: netlify.toml en dashboard-frontend/
+
+❌ "Build falla"
+   ✓ Prueba local: npm run build
+   ✓ Revisa logs en Netlify Dashboard
+
+❌ "Componentes no funcionan"
+   ✓ Prueba: npm run preview (simula producción)
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║ 💡 TIPS IMPORTANTES                                                        ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+• Netlify detecta automáticamente cambios en GitHub
+• Cada push a main = nuevo deploy automático
+• Los primeros deploys tardan ~2-5 minutos
+• Los deploys posteriores son más rápidos (~1 minuto)
+• Puedes ver el estado en: https://app.netlify.com/
+
+¡LISTO PARA DEPLOYEAR! 🎉
