@@ -1,0 +1,244 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer base {
+  * {
+    @apply transition-colors duration-200;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color-scheme: dark;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.5);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(59, 130, 246, 0.3);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(59, 130, 246, 0.6);
+  }
+}
+
+@layer components {
+  /* Card styles - Liquid Glass */
+  .card {
+    @apply bg-white/8 backdrop-blur-2xl border border-white/20 rounded-xl p-6 shadow-2xl hover:shadow-blue-500/20 transition-all hover:bg-white/10 hover:border-white/30;
+  }
+
+  .card-title {
+    @apply text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-cyan-300 mb-2;
+  }
+
+  .kpi-card {
+    @apply bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 rounded-xl p-4 text-center shadow-2xl hover:shadow-purple-500/30 transition-all;
+  }
+
+  .kpi-value {
+    @apply text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400;
+  }
+
+  .kpi-label {
+    @apply text-sm text-gray-300 mt-1;
+  }
+
+  /* Button styles */
+  .btn-primary {
+    @apply px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white rounded-lg transition-all font-medium shadow-lg hover:shadow-blue-500/50 backdrop-blur-sm;
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2 bg-white/10 hover:bg-white/20 text-gray-200 rounded-lg transition-all border border-white/20 backdrop-blur-sm;
+  }
+
+  /* Badge styles - Liquid Glass */
+  .badge {
+    @apply inline-block px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-sm border;
+  }
+
+  .badge-success {
+    @apply bg-gradient-to-r from-emerald-500/30 to-teal-500/20 text-emerald-200 border-emerald-500/40 shadow-lg shadow-emerald-500/20;
+  }
+
+  .badge-warning {
+    @apply bg-gradient-to-r from-amber-500/30 to-orange-500/20 text-amber-200 border-amber-500/40 shadow-lg shadow-amber-500/20;
+  }
+
+  .badge-danger {
+    @apply bg-gradient-to-r from-red-500/30 to-pink-500/20 text-red-200 border-red-500/40 shadow-lg shadow-red-500/20;
+  }
+
+  /* Chart container */
+  .chart-container {
+    @apply w-full h-96 relative rounded-xl overflow-hidden shadow-2xl;
+  }
+
+  /* Section heading */
+  .section-heading {
+    @apply text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-300 via-purple-300 to-pink-300;
+  }
+
+  .section-subtitle {
+    @apply text-gray-400 mt-2 text-lg;
+  }
+
+  /* Gradient text */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-300 via-purple-300 to-pink-300;
+  }
+
+  /* Glass effect - Enhanced Liquid Glass */
+  .glass {
+    @apply bg-white/10 backdrop-blur-2xl border border-white/20 rounded-xl shadow-2xl;
+  }
+
+  .glass-lg {
+    @apply bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-3xl border border-white/25 rounded-2xl shadow-2xl;
+  }
+
+  .glass-sm {
+    @apply bg-white/5 backdrop-blur-xl border border-white/15 rounded-lg shadow-lg;
+  }
+
+  /* Interactive elements */
+  .interactive-hover {
+    @apply hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/30 transition-all duration-300 cursor-pointer;
+  }
+
+  /* Gradient overlays */
+  .gradient-overlay {
+    @apply absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/5 to-pink-500/10 pointer-events-none;
+  }
+
+  /* Vibrant accent classes */
+  .accent-blue { @apply from-blue-500 to-cyan-500; }
+  .accent-purple { @apply from-purple-500 to-pink-500; }
+  .accent-emerald { @apply from-emerald-500 to-teal-500; }
+  .accent-amber { @apply from-amber-500 to-orange-500; }
+  .accent-rose { @apply from-rose-500 to-pink-500; }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.animate-slide-in-left {
+  animation: slideInFromLeft 0.5s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slideInFromRight 0.5s ease-out;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Utility classes */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Dark mode specific */
+@supports (color: oklch(0 0 0)) {
+  body {
+    background-color: oklch(11% 0 0);
+  }
+}
+
+/* Performance optimizations */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  .section-heading {
+    font-size: 1.5rem;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+  }
+
+  .interactive-hover {
+    transform: scale(1);
+  }
+}
