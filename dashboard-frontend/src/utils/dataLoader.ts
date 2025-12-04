@@ -1,10 +1,22 @@
-import { IKPIData, Status, ITemporalData, IProgram, ITitulationPerformance, ClusterType } from '@/types';
+import { IKPIData, Status, ITemporalData, IProgram, ITitulationPerformance, ClusterType, DegreeType } from '@/types';
 
 function classifyCluster(satisfaction: number, dropout: number, employability: number): ClusterType {
   const score = (satisfaction / 10) * 0.4 + ((100 - dropout) / 100) * 0.4 + (employability / 100) * 0.2;
   if (score >= 0.75) return ClusterType.EXCELLENCE;
   if (score >= 0.6) return ClusterType.INTERMEDIATE;
   return ClusterType.RISK;
+}
+
+function classifyDegreeType(titulation: string): DegreeType {
+  const title = titulation.toUpperCase();
+  if (title.includes('DOBLE GRADO') || title.includes('DOBLE TITULACIÓN')) {
+    return DegreeType.DOBLE_GRADO;
+  } else if (title.includes('MÁSTER') || title.includes('MASTER')) {
+    return DegreeType.MASTER;
+  } else if (title.includes('GRADO')) {
+    return DegreeType.GRADO;
+  }
+  return DegreeType.OTROS;
 }
 
 let csvCache: any[] = [];
@@ -79,9 +91,9 @@ const FALLBACK_TEMPORAL: ITemporalData[] = [
 ];
 
 const FALLBACK_PROGRAMS: IProgram[] = [
-  { id: 'p1', titulation: 'Ingeniería Informática', center: 'ETSE', degree: 'Bachelor', satisfaction: 7.8, dropout: 12.3, employability: 85.2, selfEfficacy: 7.5, cluster: ClusterType.EXCELLENCE },
-  { id: 'p2', titulation: 'Ingeniería de Telecomunicaciones', center: 'ETSE', degree: 'Bachelor', satisfaction: 7.6, dropout: 14.2, employability: 82.1, selfEfficacy: 7.3, cluster: ClusterType.EXCELLENCE },
-  { id: 'p3', titulation: 'Administración de Empresas', center: 'ETSE', degree: 'Bachelor', satisfaction: 6.9, dropout: 19.2, employability: 72.4, selfEfficacy: 6.6, cluster: ClusterType.INTERMEDIATE },
+  { id: 'p1', titulation: 'Ingeniería Informática', center: 'ETSE', degree: DegreeType.GRADO, satisfaction: 7.8, dropout: 12.3, employability: 85.2, selfEfficacy: 7.5, cluster: ClusterType.EXCELLENCE },
+  { id: 'p2', titulation: 'Ingeniería de Telecomunicaciones', center: 'ETSE', degree: DegreeType.GRADO, satisfaction: 7.6, dropout: 14.2, employability: 82.1, selfEfficacy: 7.3, cluster: ClusterType.EXCELLENCE },
+  { id: 'p3', titulation: 'Administración de Empresas', center: 'ETSE', degree: DegreeType.GRADO, satisfaction: 6.9, dropout: 19.2, employability: 72.4, selfEfficacy: 6.6, cluster: ClusterType.INTERMEDIATE },
 ];
 
 export async function calculateKPIs(): Promise<IKPIData[]> {
@@ -143,7 +155,7 @@ export async function loadPrograms(): Promise<IProgram[]> {
       id: `p_${id++}`,
       titulation: r.TITULACION,
       center: r.CENTRO,
-      degree: 'Bachelor',
+      degree: classifyDegreeType(r.TITULACION),
       satisfaction: sat,
       dropout: drop,
       employability: emp,
@@ -160,6 +172,7 @@ export async function loadTitulationPerformance(): Promise<ITitulationPerformanc
   return programs.map((p, idx) => ({
     titulation: p.titulation,
     center: p.center,
+    degree: p.degree,
     satisfaction: p.satisfaction,
     dropout: p.dropout,
     employability: p.employability,

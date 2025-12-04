@@ -11,7 +11,7 @@ export interface IProgram {
   id: string;
   titulation: string;
   center: string;
-  degree: string;
+  degree: DegreeType;
   satisfaction: number;
   dropout: number;
   employability: number;
@@ -30,6 +30,13 @@ export enum Status {
   OK = 'ok',
   WARNING = 'warning',
   CRITICAL = 'critical',
+}
+
+export enum DegreeType {
+  GRADO = 'Grado',
+  MASTER = 'Máster',
+  DOBLE_GRADO = 'Doble Grado',
+  OTROS = 'Otros',
 }
 
 export interface IKPIData {
@@ -74,6 +81,7 @@ export interface IPCAData {
 export interface ITitulationPerformance {
   titulation: string;
   center: string;
+  degree: DegreeType;
   satisfaction: number;
   dropout: number;
   employability: number;

@@ -7,6 +7,7 @@ import { ChartWrapper } from '@/components/ChartWrapper';
 import { Tabs } from '@/components/Tabs';
 import { AllTitulations } from '@/components/AllTitulations';
 import { TitulationSearch } from '@/components/TitulationSearch';
+import { CompareCareer } from '@/components/CompareCareer';
 
 export const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('resumen');
@@ -175,6 +176,7 @@ export const Dashboard = () => {
     { id: 'clusters', label: 'Análisis de Clusters', icon: '🎯', description: 'Segmentación' },
     { id: 'ranking', label: 'Ranking', icon: '🏆', description: 'Top titulaciones' },
     { id: 'todas', label: 'Todas las Carreras', icon: '📚', description: 'Catálogo completo' },
+    { id: 'comparar', label: 'Comparar Carreras', icon: '⚖️', description: 'Comparativa detallada' },
   ];
 
   return (
@@ -479,6 +481,11 @@ export const Dashboard = () => {
 
               <AllTitulations titulations={titulations} />
             </div>
+          )}
+
+          {/* TAB 6: COMPARAR CARRERAS */}
+          {activeTab === 'comparar' && (
+            <CompareCareer titulations={titulations} />
           )}
         </div>
       </Tabs>
