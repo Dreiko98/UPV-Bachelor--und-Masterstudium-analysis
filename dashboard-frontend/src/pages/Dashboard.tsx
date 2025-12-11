@@ -180,12 +180,12 @@ export const Dashboard = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 py-6">
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-amber-50 py-6">
       {/* Header */}
       <div className="px-6 mb-8">
         <div className="flex items-center gap-4 mb-4">
-          <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-2xl shadow-lg">
-            👁️
+          <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg overflow-hidden">
+            <img src="/assets/favicon.png" alt="UPVision Logo" className="w-10 h-10 object-contain" />
           </div>
           <div>
             <h1 className="text-4xl font-bold text-slate-800">UPVision</h1>

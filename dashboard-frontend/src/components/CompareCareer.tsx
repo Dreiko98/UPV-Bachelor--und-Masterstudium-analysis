@@ -361,8 +361,8 @@ export const CompareCareer: React.FC<CompareCareerProps> = ({ titulations }) => 
           </div>
 
           {/* Comparison Metrics */}
-          <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-lg border border-slate-700/50 p-6">
-            <h3 className="text-lg font-bold text-white mb-4">Comparación de Indicadores</h3>
+          <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-md">
+            <h3 className="text-lg font-bold text-slate-800 mb-4">Comparación de Indicadores</h3>
             <div className="space-y-3">
               <ComparisonMetric
                 label="Satisfacción"
@@ -393,16 +393,16 @@ export const CompareCareer: React.FC<CompareCareerProps> = ({ titulations }) => 
           </div>
 
           {/* Winner Summary */}
-          <div className="bg-gradient-to-r from-blue-900/30 to-purple-900/30 border border-blue-700/50 rounded-lg p-6">
-            <h3 className="font-semibold text-blue-300 mb-3 flex items-center gap-2">
+          <div className="bg-primary/10 border border-primary/20 rounded-2xl p-6 shadow-md">
+            <h3 className="font-semibold text-blue-700 mb-3 flex items-center gap-2">
               🏆 Resumen Comparativo
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
               <div>
-                <div className="font-semibold text-white mb-2">
+                <div className="font-semibold text-slate-800 mb-2">
                   {selectedCareer1.titulation}
                 </div>
-                <ul className="space-y-1 text-gray-300">
+                <ul className="space-y-1 text-slate-700">
                   {selectedCareer1.satisfaction > selectedCareer2.satisfaction && (
                     <li>✓ Mayor satisfacción</li>
                   )}
@@ -418,10 +418,10 @@ export const CompareCareer: React.FC<CompareCareerProps> = ({ titulations }) => 
                 </ul>
               </div>
               <div>
-                <div className="font-semibold text-white mb-2">
+                <div className="font-semibold text-slate-800 mb-2">
                   {selectedCareer2.titulation}
                 </div>
-                <ul className="space-y-1 text-gray-300">
+                <ul className="space-y-1 text-slate-700">
                   {selectedCareer2.satisfaction > selectedCareer1.satisfaction && (
                     <li>✓ Mayor satisfacción</li>
                   )}
@@ -440,12 +440,12 @@ export const CompareCareer: React.FC<CompareCareerProps> = ({ titulations }) => 
           </div>
         </div>
       ) : (
-        <div className="bg-slate-800/30 border border-slate-700/50 rounded-lg p-12 text-center">
+        <div className="bg-white border border-slate-200 rounded-2xl p-12 text-center shadow-md">
           <div className="text-6xl mb-4">🔍</div>
-          <h3 className="text-xl font-semibold text-gray-300 mb-2">
+          <h3 className="text-xl font-semibold text-slate-700 mb-2">
             Selecciona dos carreras para comparar
           </h3>
-          <p className="text-gray-500">
+          <p className="text-slate-600">
             Usa los buscadores de arriba para encontrar las titulaciones que deseas comparar
           </p>
         </div>
