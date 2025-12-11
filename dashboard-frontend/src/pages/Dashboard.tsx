@@ -19,11 +19,11 @@ export const Dashboard = () => {
   const [error, setError] = useState<string | null>(null);
   const [selectedTitulation, setSelectedTitulation] = useState<ITitulationPerformance | null>(null);
 
-  // Cluster colors
+  // Cluster colors - UPVision Palette
   const clusterColors: Record<string, string> = {
-    [ClusterType.EXCELLENCE]: '#10B981',
-    [ClusterType.INTERMEDIATE]: '#F59E0B',
-    [ClusterType.RISK]: '#EF4444',
+    [ClusterType.EXCELLENCE]: '#6FCF97',  // Verde menta
+    [ClusterType.INTERMEDIATE]: '#F2C94C',  // Amarillo suave
+    [ClusterType.RISK]: '#FF8A80',  // Coral suave
   };
 
   useEffect(() => {
@@ -81,10 +81,10 @@ export const Dashboard = () => {
       name: 'Satisfacción',
       type: 'scatter',
       mode: 'lines+markers',
-      line: { color: '#3B82F6', width: 3 },
+      line: { color: '#56CCF2', width: 3, shape: 'spline' },  // Azul cielo UPVision
       marker: { size: 10, opacity: 0.8 },
       fill: 'tonexty',
-      fillcolor: 'rgba(59, 130, 246, 0.1)',
+      fillcolor: 'rgba(86, 204, 242, 0.1)',
       hovertemplate: '<b>Satisfacción</b><br>Año: %{x}<br>Score: %{y:.2f}/10<extra></extra>',
       yaxis: 'y1',
     },
@@ -94,10 +94,10 @@ export const Dashboard = () => {
       name: 'Retención (%)',
       type: 'scatter',
       mode: 'lines+markers',
-      line: { color: '#10B981', width: 3 },
+      line: { color: '#6FCF97', width: 3, shape: 'spline' },  // Verde menta UPVision
       marker: { size: 10, opacity: 0.8 },
       fill: 'tonexty',
-      fillcolor: 'rgba(16, 185, 129, 0.1)',
+      fillcolor: 'rgba(111, 207, 151, 0.1)',
       hovertemplate: '<b>Retención</b><br>Año: %{x}<br>Tasa: %{y:.1f}%<extra></extra>',
       yaxis: 'y2',
     },
@@ -107,10 +107,10 @@ export const Dashboard = () => {
       name: 'Empleabilidad (%)',
       type: 'scatter',
       mode: 'lines+markers',
-      line: { color: '#F59E0B', width: 3 },
+      line: { color: '#F2C94C', width: 3, shape: 'spline' },  // Amarillo suave UPVision
       marker: { size: 10, opacity: 0.8 },
       fill: 'tonexty',
-      fillcolor: 'rgba(245, 158, 11, 0.1)',
+      fillcolor: 'rgba(242, 201, 76, 0.1)',
       hovertemplate: '<b>Empleabilidad</b><br>Año: %{x}<br>Tasa: %{y:.1f}%<extra></extra>',
       yaxis: 'y2',
     },
@@ -120,7 +120,7 @@ export const Dashboard = () => {
       name: 'Autoeficacia (/10)',
       type: 'scatter',
       mode: 'lines+markers',
-      line: { color: '#EC4899', width: 3, dash: 'dash' },
+      line: { color: '#FF8A80', width: 3, dash: 'dash', shape: 'spline' },  // Coral suave UPVision
       marker: { size: 10, opacity: 0.8 },
       hovertemplate: '<b>Autoeficacia</b><br>Año: %{x}<br>Score: %{y:.1f}/10<extra></extra>',
       yaxis: 'y1',
@@ -180,16 +180,16 @@ export const Dashboard = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 py-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 py-6">
       {/* Header */}
       <div className="px-6 mb-8">
         <div className="flex items-center gap-4 mb-4">
-          <div className="h-12 w-12 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-2xl">
-            📊
+          <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-2xl shadow-lg">
+            👁️
           </div>
           <div>
-            <h1 className="text-4xl font-bold text-white">Panel Maestro UPV</h1>
-            <p className="text-gray-400">Análisis Integral del Desempeño Académico 2020-2024</p>
+            <h1 className="text-4xl font-bold text-slate-800">UPVision</h1>
+            <p className="text-slate-600">Análisis Integral del Desempeño Académico 2020-2024</p>
           </div>
         </div>
       </div>
@@ -201,13 +201,13 @@ export const Dashboard = () => {
           {activeTab === 'resumen' && (
             <div className="space-y-8">
               <div>
-                <h2 className="text-2xl font-bold text-white mb-2">Indicadores Clave de Desempeño</h2>
-                <p className="text-gray-400 mb-6">Métricas principales del sistema académico UPV</p>
+                <h2 className="text-2xl font-bold text-slate-800 mb-2">Indicadores Clave de Desempeño</h2>
+                <p className="text-slate-600 mb-6">Métricas principales del sistema académico UPV</p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 {kpis.map((kpi, idx) => (
-                  <div key={idx} className="transform hover:scale-105 transition-transform">
+                  <div key={idx} className="transform hover:scale-[1.02] transition-transform">
                     <KPICard kpi={kpi} />
                   </div>
                 ))}
@@ -215,16 +215,16 @@ export const Dashboard = () => {
 
               {/* Mini Insights */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
-                <div className="bg-gradient-to-br from-blue-900/30 to-blue-800/10 border border-blue-700/50 rounded-lg p-6">
-                  <h3 className="font-semibold text-blue-300 mb-3">💡 Hallazgo Principal</h3>
-                  <p className="text-gray-300 text-sm leading-relaxed">
+                <div className="bg-primary/10 border border-primary/20 rounded-2xl p-6 shadow-md">
+                  <h3 className="font-semibold text-blue-700 mb-3">💡 Hallazgo Principal</h3>
+                  <p className="text-slate-700 text-sm leading-relaxed">
                     Tendencia positiva consistente en todos los indicadores. La satisfacción ha mejorado 0.3 puntos, el abandono disminuyó 1.6% y la empleabilidad aumentó 3.8 puntos porcentuales en el período 2020-2024.
                   </p>
                 </div>
 
-                <div className="bg-gradient-to-br from-green-900/30 to-green-800/10 border border-green-700/50 rounded-lg p-6">
-                  <h3 className="font-semibold text-green-300 mb-3">✅ Recomendación</h3>
-                  <p className="text-gray-300 text-sm leading-relaxed">
+                <div className="bg-secondary/10 border border-secondary/20 rounded-2xl p-6 shadow-md">
+                  <h3 className="font-semibold text-emerald-700 mb-3">✅ Recomendación</h3>
+                  <p className="text-slate-700 text-sm leading-relaxed">
                     Mantener monitoreo continuo de indicadores. Replicar modelos exitosos de STEM en otras áreas. Intervención inmediata en cluster de riesgo.
                   </p>
                 </div>
@@ -236,8 +236,8 @@ export const Dashboard = () => {
           {activeTab === 'temporal' && (
             <div className="space-y-8">
               <div>
-                <h2 className="text-2xl font-bold text-white mb-2">Evolución de Indicadores 2020-2024</h2>
-                <p className="text-gray-400 mb-6">Tendencias de satisfacción, retención, empleabilidad y autoeficacia</p>
+                <h2 className="text-2xl font-bold text-slate-800 mb-2">Evolución de Indicadores 2020-2024</h2>
+                <p className="text-slate-600 mb-6">Tendencias de satisfacción, retención, empleabilidad y autoeficacia</p>
               </div>
 
               <ChartWrapper
@@ -249,20 +249,20 @@ export const Dashboard = () => {
                   data={temporalChartData}
                   layout={{
                     height: 500,
-                    plot_bgcolor: 'rgba(15, 23, 42, 0.2)',
+                    plot_bgcolor: 'rgba(255, 255, 255, 0.5)',
                     paper_bgcolor: 'transparent',
-                    font: { color: '#D1D5DB', family: 'Inter', size: 12 },
+                    font: { color: '#475569', family: 'Poppins', size: 12 },
                     margin: { l: 70, r: 70, t: 40, b: 80 },
                     xaxis: {
                       title: 'Año',
-                      gridcolor: 'rgba(75, 85, 99, 0.2)',
+                      gridcolor: 'rgba(203, 213, 225, 0.4)',
                       showgrid: true,
                       zeroline: false,
                       tickfont: { size: 11 },
                     },
                     yaxis: {
                       title: 'Satisfacción / Autoeficacia (/10)',
-                      gridcolor: 'rgba(75, 85, 99, 0.2)',
+                      gridcolor: 'rgba(203, 213, 225, 0.4)',
                       showgrid: true,
                       zeroline: false,
                       tickfont: { size: 11 },
@@ -272,7 +272,7 @@ export const Dashboard = () => {
                       title: 'Retención / Empleabilidad (%)',
                       overlaying: 'y',
                       side: 'right',
-                      gridcolor: 'rgba(75, 85, 99, 0.1)',
+                      gridcolor: 'rgba(203, 213, 225, 0.2)',
                       showgrid: false,
                       zeroline: false,
                       tickfont: { size: 11 },
@@ -283,9 +283,10 @@ export const Dashboard = () => {
                     legend: {
                       x: 0.01,
                       y: 0.99,
-                      bgcolor: 'rgba(15, 23, 42, 0.7)',
-                      bordercolor: 'rgba(255, 255, 255, 0.2)',
+                      bgcolor: 'rgba(255, 255, 255, 0.9)',
+                      bordercolor: 'rgba(203, 213, 225, 0.5)',
                       borderwidth: 1,
+                      font: { color: '#475569' },
                     },
                   }}
                   useResizeHandler
@@ -305,8 +306,8 @@ export const Dashboard = () => {
           {activeTab === 'clusters' && (
             <div className="space-y-8">
               <div>
-                <h2 className="text-2xl font-bold text-white mb-2">Segmentación de Titulaciones</h2>
-                <p className="text-gray-400 mb-6">Clasificación de programas por desempeño integral</p>
+                <h2 className="text-2xl font-bold text-slate-800 mb-2">Segmentación de Titulaciones</h2>
+                <p className="text-slate-600 mb-6">Clasificación de programas por desempeño integral</p>
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -322,7 +323,7 @@ export const Dashboard = () => {
                       height: 400,
                       plot_bgcolor: 'transparent',
                       paper_bgcolor: 'transparent',
-                      font: { color: '#D1D5DB', family: 'Inter' },
+                      font: { color: '#475569', family: 'Poppins' },
                       margin: { l: 40, r: 40, t: 40, b: 40 },
                     }}
                     useResizeHandler
@@ -344,38 +345,38 @@ export const Dashboard = () => {
                     {[
                       {
                         name: 'Excelencia',
-                        color: '#10B981',
+                        color: '#6FCF97',
                         metrics: ['Satisfacción: 7.8/10', 'Abandono: 12%', 'Empleabilidad: 85%'],
                         icon: '✨',
                       },
                       {
                         name: 'Intermedio',
-                        color: '#F59E0B',
+                        color: '#F2C94C',
                         metrics: ['Satisfacción: 7.0/10', 'Abandono: 19%', 'Empleabilidad: 72%'],
                         icon: '⚡',
                       },
                       {
                         name: 'Riesgo',
-                        color: '#EF4444',
+                        color: '#FF8A80',
                         metrics: ['Satisfacción: 6.2/10', 'Abandono: 28%', 'Empleabilidad: 58%'],
                         icon: '⚠️',
                       },
                     ].map((cluster) => (
                       <div
                         key={cluster.name}
-                        className="p-4 rounded-lg border"
+                        className="p-4 rounded-2xl border shadow-sm"
                         style={{
-                          borderColor: cluster.color + '50',
-                          backgroundColor: cluster.color + '10',
+                          borderColor: cluster.color + '40',
+                          backgroundColor: cluster.color + '15',
                         }}
                       >
                         <div className="flex items-center gap-2 mb-3">
                           <span className="text-2xl">{cluster.icon}</span>
-                          <h4 className="font-semibold text-lg" style={{ color: cluster.color }}>
+                          <h4 className="font-semibold text-lg text-slate-800">
                             {cluster.name}
                           </h4>
                         </div>
-                        <ul className="text-sm text-gray-300 space-y-1">
+                        <ul className="text-sm text-slate-700 space-y-1">
                           {cluster.metrics.map((metric, idx) => (
                             <li key={idx} className="flex items-center gap-2">
                               <span
@@ -398,8 +399,8 @@ export const Dashboard = () => {
           {activeTab === 'ranking' && (
             <div className="space-y-8">
               <div>
-                <h2 className="text-2xl font-bold text-white mb-2">Top Titulaciones & Búsqueda</h2>
-                <p className="text-gray-400 mb-6">Programas con mayor satisfacción estudiantil</p>
+                <h2 className="text-2xl font-bold text-slate-800 mb-2">Top Titulaciones & Búsqueda</h2>
+                <p className="text-slate-600 mb-6">Programas con mayor satisfacción estudiantil</p>
               </div>
 
               {/* Search Component */}
@@ -418,12 +419,12 @@ export const Dashboard = () => {
                   data={titulationChartData}
                   layout={{
                     height: 450,
-                    plot_bgcolor: 'rgba(15, 23, 42, 0.5)',
+                    plot_bgcolor: 'rgba(255, 255, 255, 0.5)',
                     paper_bgcolor: 'transparent',
-                    font: { color: '#D1D5DB', family: 'Inter' },
+                    font: { color: '#475569', family: 'Poppins' },
                     margin: { l: 150, r: 40, t: 40, b: 60 },
-                    xaxis: { title: 'Satisfacción (0-10)' },
-                    yaxis: { automargin: true },
+                    xaxis: { title: 'Satisfacción (0-10)', gridcolor: 'rgba(203, 213, 225, 0.4)' },
+                    yaxis: { automargin: true, gridcolor: 'rgba(203, 213, 225, 0.4)' },
                   }}
                   useResizeHandler
                   style={{ width: '100%', height: '100%' }}
@@ -436,31 +437,31 @@ export const Dashboard = () => {
               </ChartWrapper>
 
               {/* Table View */}
-              <div className="bg-slate-800/50 rounded-lg border border-slate-700 overflow-hidden">
+              <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-md">
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm">
                     <thead>
-                      <tr className="border-b border-slate-700 bg-slate-900/50">
-                        <th className="px-6 py-3 text-left font-semibold text-gray-300">#</th>
-                        <th className="px-6 py-3 text-left font-semibold text-gray-300">Titulación</th>
-                        <th className="px-6 py-3 text-left font-semibold text-gray-300">Centro</th>
-                        <th className="px-6 py-3 text-right font-semibold text-gray-300">Satisfacción</th>
-                        <th className="px-6 py-3 text-right font-semibold text-gray-300">Empleabilidad</th>
+                      <tr className="border-b border-slate-200 bg-slate-50">
+                        <th className="px-6 py-3 text-left font-semibold text-slate-700">#</th>
+                        <th className="px-6 py-3 text-left font-semibold text-slate-700">Titulación</th>
+                        <th className="px-6 py-3 text-left font-semibold text-slate-700">Centro</th>
+                        <th className="px-6 py-3 text-right font-semibold text-slate-700">Satisfacción</th>
+                        <th className="px-6 py-3 text-right font-semibold text-slate-700">Empleabilidad</th>
                       </tr>
                     </thead>
                     <tbody>
                       {titulations.slice(0, 10).map((t) => (
-                        <tr key={t.ranking} className="border-b border-slate-700/50 hover:bg-slate-700/30 transition">
+                        <tr key={t.ranking} className="border-b border-slate-100 hover:bg-slate-50 transition">
                           <td className="px-6 py-3">
-                            <span className="font-semibold text-blue-400">{t.ranking}</span>
+                            <span className="font-semibold text-primary">{t.ranking}</span>
                           </td>
-                          <td className="px-6 py-3 text-gray-300">{t.titulation}</td>
-                          <td className="px-6 py-3 text-gray-400">{t.center}</td>
+                          <td className="px-6 py-3 text-slate-800">{t.titulation}</td>
+                          <td className="px-6 py-3 text-slate-600">{t.center}</td>
                           <td className="px-6 py-3 text-right">
-                            <span className="font-semibold text-green-400">{t.satisfaction.toFixed(1)}/10</span>
+                            <span className="font-semibold text-emerald-600">{t.satisfaction.toFixed(1)}/10</span>
                           </td>
                           <td className="px-6 py-3 text-right">
-                            <span className="font-semibold text-blue-400">{t.employability.toFixed(1)}%</span>
+                            <span className="font-semibold text-blue-600">{t.employability.toFixed(1)}%</span>
                           </td>
                         </tr>
                       ))}
@@ -475,8 +476,8 @@ export const Dashboard = () => {
           {activeTab === 'todas' && (
             <div className="space-y-8">
               <div>
-                <h2 className="text-2xl font-bold text-white mb-2">Catálogo Completo de Titulaciones</h2>
-                <p className="text-gray-400 mb-6">Explora todas las carreras con tarjetas interactivas, filtros avanzados y búsqueda</p>
+                <h2 className="text-2xl font-bold text-slate-800 mb-2">Catálogo Completo de Titulaciones</h2>
+                <p className="text-slate-600 mb-6">Explora todas las carreras con tarjetas interactivas, filtros avanzados y búsqueda</p>
               </div>
 
               <AllTitulations titulations={titulations} />
@@ -491,8 +492,8 @@ export const Dashboard = () => {
       </Tabs>
 
       {/* Footer */}
-      <div className="mt-16 pt-8 px-6 border-t border-slate-700 text-center text-gray-500 text-sm">
-        <p>Panel Maestro UPV • Análisis de Desempeño Académico 2020-2024</p>
+      <div className="mt-16 pt-8 px-6 border-t border-slate-200 text-center text-slate-600 text-sm">
+        <p className="font-medium">UPVision • Análisis de Desempeño Académico 2020-2024</p>
         <p className="mt-2">Datos actualizados: {new Date().toLocaleDateString('es-ES')}</p>
       </div>
     </div>

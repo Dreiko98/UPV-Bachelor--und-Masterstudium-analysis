@@ -20,19 +20,19 @@ export const Tabs = (props: TabsProps): React.ReactElement => {
   return (
     <div className="w-full">
       {/* Tab Headers */}
-      <div className="border-b border-slate-700 bg-slate-800/50 backdrop-blur-sm sticky top-0 z-10">
+      <div className="border-b border-slate-200 bg-white/80 backdrop-blur-sm sticky top-0 z-10 shadow-sm">
         <div className="flex gap-2 px-6 py-4 overflow-x-auto scrollbar-hide">
           {tabs.map((tab: TabItem) => (
             <button
               key={tab.id}
               onClick={() => onTabChange(tab.id)}
               className={`
-                flex items-center gap-3 px-4 py-2 rounded-lg font-medium
+                flex items-center gap-3 px-5 py-2.5 rounded-xl font-medium
                 transition-all duration-300 whitespace-nowrap text-sm
                 ${
                   activeTab === tab.id
-                    ? 'bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-lg shadow-blue-500/50'
-                    : 'bg-slate-700 text-gray-300 hover:bg-slate-600'
+                    ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-md'
+                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                 }
               `}
             >

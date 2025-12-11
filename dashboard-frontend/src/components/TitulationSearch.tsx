@@ -17,9 +17,9 @@ export const TitulationSearch: React.FC<TitulationSearchProps> = ({ titulations,
   );
 
   const clusterColors: Record<ClusterType, string> = {
-    [ClusterType.EXCELLENCE]: 'from-emerald-500 to-teal-500',
-    [ClusterType.INTERMEDIATE]: 'from-amber-500 to-orange-500',
-    [ClusterType.RISK]: 'from-red-500 to-pink-500',
+    [ClusterType.EXCELLENCE]: 'from-secondary to-emerald-400',
+    [ClusterType.INTERMEDIATE]: 'from-warning to-yellow-400',
+    [ClusterType.RISK]: 'from-danger to-red-400',
   };
 
   const clusterLabels: Record<ClusterType, string> = {
@@ -32,10 +32,10 @@ export const TitulationSearch: React.FC<TitulationSearchProps> = ({ titulations,
     <div className="relative">
       {/* Search Input */}
       <div className="relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl blur opacity-20 group-hover:opacity-30 transition-opacity"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-2xl blur opacity-10 group-hover:opacity-20 transition-opacity"></div>
         
-        <div className="relative flex items-center gap-3 px-4 py-3 rounded-xl bg-white/10 backdrop-blur-2xl border border-white/20 hover:border-white/30 transition-all duration-300 shadow-2xl hover:shadow-blue-500/20">
-          <Search className="w-5 h-5 text-gray-400" />
+        <div className="relative flex items-center gap-3 px-4 py-3 rounded-2xl bg-white border border-slate-200 hover:border-primary/40 transition-all duration-300 shadow-md hover:shadow-lg">
+          <Search className="w-5 h-5 text-slate-400" />
           <input
             type="text"
             placeholder="Buscar titulación..."
@@ -45,10 +45,10 @@ export const TitulationSearch: React.FC<TitulationSearchProps> = ({ titulations,
               setIsOpen(true);
             }}
             onFocus={() => setIsOpen(true)}
-            className="flex-1 bg-transparent text-white placeholder-gray-500 focus:outline-none"
+            className="flex-1 bg-transparent text-slate-800 placeholder-slate-400 focus:outline-none"
           />
           {search && (
-            <button onClick={() => setSearch('')} className="text-gray-400 hover:text-white">
+            <button onClick={() => setSearch('')} className="text-slate-400 hover:text-slate-700">
               <X className="w-4 h-4" />
             </button>
           )}
@@ -58,9 +58,9 @@ export const TitulationSearch: React.FC<TitulationSearchProps> = ({ titulations,
       {/* Dropdown */}
       {isOpen && search && (
         <div className="absolute top-full left-0 right-0 mt-2 z-50">
-          <div className="absolute inset-0 bg-gradient-to-b from-blue-500/20 to-purple-500/20 rounded-lg blur"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/10 to-secondary/10 rounded-2xl blur"></div>
           
-          <div className="relative max-h-96 overflow-y-auto rounded-lg bg-gradient-to-b from-slate-900/95 to-slate-950/95 backdrop-blur-2xl border border-white/20 shadow-2xl">
+          <div className="relative max-h-96 overflow-y-auto rounded-2xl bg-white backdrop-blur-md border border-slate-200 shadow-xl">
             {filtered.length > 0 ? (
               <div className="space-y-1 p-2">
                 {filtered.map((tit: ITitulationPerformance) => (
@@ -71,20 +71,20 @@ export const TitulationSearch: React.FC<TitulationSearchProps> = ({ titulations,
                       setSearch('');
                       setIsOpen(false);
                     }}
-                    className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-200 group ${
+                    className={`w-full text-left px-4 py-3 rounded-xl transition-all duration-200 group ${
                       selectedTitulation?.ranking === tit.ranking
-                        ? 'bg-gradient-to-r from-blue-500/30 to-purple-500/30 border border-white/30'
-                        : 'hover:bg-white/10'
+                        ? 'bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30'
+                        : 'hover:bg-slate-50'
                     }`}
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex-1">
-                        <p className="font-medium text-white group-hover:text-blue-300 transition-colors">
+                        <p className="font-medium text-slate-800 group-hover:text-primary transition-colors">
                           {tit.titulation}
                         </p>
-                        <p className="text-xs text-gray-400">{tit.center}</p>
+                        <p className="text-xs text-slate-600">{tit.center}</p>
                       </div>
-                      <div className={`px-2 py-1 rounded text-xs font-semibold bg-gradient-to-r ${clusterColors[tit.cluster as ClusterType]} text-white`}>
+                      <div className={`px-2 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${clusterColors[tit.cluster as ClusterType]} text-white`}>
                         {clusterLabels[tit.cluster as ClusterType]}
                       </div>
                     </div>
@@ -92,7 +92,7 @@ export const TitulationSearch: React.FC<TitulationSearchProps> = ({ titulations,
                 ))}
               </div>
             ) : (
-              <div className="px-4 py-6 text-center text-gray-400">
+              <div className="px-4 py-6 text-center text-slate-600">
                 No se encontraron titulaciones
               </div>
             )}

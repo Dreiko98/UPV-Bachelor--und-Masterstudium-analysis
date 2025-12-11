@@ -12,127 +12,126 @@
   }
 
   body {
-    @apply bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    color-scheme: dark;
+    @apply bg-gradient-to-br from-slate-50 via-white to-slate-50 text-slate-800;
+    font-family: 'Poppins', 'Inter', system-ui, -apple-system, sans-serif;
+    color-scheme: light;
   }
 
-  /* Scrollbar styling */
+  /* Scrollbar styling - UPVision Light Mode */
   ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
   }
 
   ::-webkit-scrollbar-track {
-    background: rgba(15, 23, 42, 0.5);
+    background: rgba(248, 250, 252, 0.5);
   }
 
   ::-webkit-scrollbar-thumb {
-    background: rgba(59, 130, 246, 0.3);
-    border-radius: 4px;
+    background: rgba(86, 204, 242, 0.4);
+    border-radius: 8px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(59, 130, 246, 0.6);
+    background: rgba(86, 204, 242, 0.7);
   }
 }
 
 @layer components {
-  /* Card styles - Liquid Glass */
+  /* Card styles - UPVision Light Mode con sombras suaves */
   .card {
-    @apply bg-white/8 backdrop-blur-2xl border border-white/20 rounded-xl p-6 shadow-2xl hover:shadow-blue-500/20 transition-all hover:bg-white/10 hover:border-white/30;
+    @apply bg-white border border-slate-200 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all;
   }
 
   .card-title {
-    @apply text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-cyan-300 mb-2;
+    @apply text-lg font-semibold text-slate-800 mb-2;
   }
 
   .kpi-card {
-    @apply bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 rounded-xl p-4 text-center shadow-2xl hover:shadow-purple-500/30 transition-all;
+    @apply bg-white border border-slate-200 rounded-2xl p-4 text-center shadow-md hover:shadow-lg transition-all;
   }
 
   .kpi-value {
-    @apply text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400;
+    @apply text-4xl font-bold text-slate-800;
   }
 
   .kpi-label {
-    @apply text-sm text-gray-300 mt-1;
+    @apply text-sm text-slate-600 mt-1 font-medium;
   }
 
-  /* Button styles */
+  /* Button styles - UPVision */
   .btn-primary {
-    @apply px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white rounded-lg transition-all font-medium shadow-lg hover:shadow-blue-500/50 backdrop-blur-sm;
+    @apply px-5 py-2.5 bg-primary hover:bg-primary/90 text-white rounded-xl transition-all font-medium shadow-md hover:shadow-lg;
   }
 
   .btn-secondary {
-    @apply px-4 py-2 bg-white/10 hover:bg-white/20 text-gray-200 rounded-lg transition-all border border-white/20 backdrop-blur-sm;
+    @apply px-5 py-2.5 bg-white hover:bg-slate-50 text-slate-700 rounded-xl transition-all border border-slate-300 font-medium;
   }
 
-  /* Badge styles - Liquid Glass */
+  /* Badge styles - UPVision con bordes redondeados */
   .badge {
-    @apply inline-block px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-sm border;
+    @apply inline-block px-3 py-1.5 rounded-full text-xs font-semibold;
   }
 
   .badge-success {
-    @apply bg-gradient-to-r from-emerald-500/30 to-teal-500/20 text-emerald-200 border-emerald-500/40 shadow-lg shadow-emerald-500/20;
+    @apply bg-secondary/20 text-emerald-700 border border-secondary/30;
   }
 
   .badge-warning {
-    @apply bg-gradient-to-r from-amber-500/30 to-orange-500/20 text-amber-200 border-amber-500/40 shadow-lg shadow-amber-500/20;
+    @apply bg-warning/20 text-amber-700 border border-warning/30;
   }
 
   .badge-danger {
-    @apply bg-gradient-to-r from-red-500/30 to-pink-500/20 text-red-200 border-red-500/40 shadow-lg shadow-red-500/20;
+    @apply bg-danger/20 text-red-700 border border-danger/30;
   }
 
   /* Chart container */
   .chart-container {
-    @apply w-full h-96 relative rounded-xl overflow-hidden shadow-2xl;
+    @apply w-full h-96 relative rounded-2xl overflow-hidden shadow-md bg-white;
   }
 
-  /* Section heading */
+  /* Section heading - UPVision */
   .section-heading {
-    @apply text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-300 via-purple-300 to-pink-300;
+    @apply text-3xl font-bold text-slate-800;
   }
 
   .section-subtitle {
-    @apply text-gray-400 mt-2 text-lg;
+    @apply text-slate-600 mt-2 text-lg font-normal;
   }
 
-  /* Gradient text */
+  /* Gradient text - UPVision colores pasteles */
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-300 via-purple-300 to-pink-300;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-warning;
   }
 
-  /* Glass effect - Enhanced Liquid Glass */
+  /* Glass effect - Adaptado a Light Mode */
   .glass {
-    @apply bg-white/10 backdrop-blur-2xl border border-white/20 rounded-xl shadow-2xl;
+    @apply bg-white/90 backdrop-blur-md border border-slate-200 rounded-2xl shadow-lg;
   }
 
   .glass-lg {
-    @apply bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-3xl border border-white/25 rounded-2xl shadow-2xl;
+    @apply bg-white/95 backdrop-blur-lg border border-slate-200 rounded-2xl shadow-xl;
   }
 
   .glass-sm {
-    @apply bg-white/5 backdrop-blur-xl border border-white/15 rounded-lg shadow-lg;
+    @apply bg-white/80 backdrop-blur-sm border border-slate-200 rounded-xl shadow-md;
   }
 
   /* Interactive elements */
   .interactive-hover {
-    @apply hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/30 transition-all duration-300 cursor-pointer;
+    @apply hover:scale-[1.02] hover:shadow-xl transition-all duration-300 cursor-pointer;
   }
 
-  /* Gradient overlays */
+  /* Gradient overlays - Tonos pasteles suaves */
   .gradient-overlay {
-    @apply absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/5 to-pink-500/10 pointer-events-none;
+    @apply absolute inset-0 bg-gradient-to-br from-primary/5 via-secondary/5 to-warning/5 pointer-events-none;
   }
 
-  /* Vibrant accent classes */
-  .accent-blue { @apply from-blue-500 to-cyan-500; }
-  .accent-purple { @apply from-purple-500 to-pink-500; }
-  .accent-emerald { @apply from-emerald-500 to-teal-500; }
-  .accent-amber { @apply from-amber-500 to-orange-500; }
-  .accent-rose { @apply from-rose-500 to-pink-500; }
+  /* Vibrant accent classes - UPVision */
+  .accent-blue { @apply from-primary to-blue-400; }
+  .accent-green { @apply from-secondary to-emerald-400; }
+  .accent-yellow { @apply from-warning to-yellow-400; }
+  .accent-coral { @apply from-danger to-red-400; }
 }
 
 /* Animations */
@@ -211,13 +210,6 @@
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
-}
-
-/* Dark mode specific */
-@supports (color: oklch(0 0 0)) {
-  body {
-    background-color: oklch(11% 0 0);
-  }
 }
 
 /* Performance optimizations */

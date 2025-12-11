@@ -14,23 +14,23 @@ export const ChartWrapper: React.FC<ChartWrapperProps> = (props) => {
   const [expanded, setExpanded] = React.useState(false);
 
   return (
-    <div className="group relative rounded-xl border border-slate-700/50 bg-gradient-to-br from-slate-800/50 to-slate-900/30 overflow-hidden transition-all duration-300 hover:border-slate-600 hover:shadow-xl hover:shadow-blue-500/10">
+    <div className="group relative rounded-2xl border border-slate-200 bg-white overflow-hidden transition-all duration-300 hover:border-primary/40 hover:shadow-lg shadow-md">
       {/* Gradient background accent */}
       <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-300" 
         style={{
-          background: 'radial-gradient(circle at top-right, #3b82f6, transparent 70%)'
+          background: 'radial-gradient(circle at top-right, #56CCF2, transparent 70%)'
         }}
       />
 
       <div className="relative z-10">
         {/* Header */}
-        <div className="px-6 py-5 border-b border-slate-700/50 backdrop-blur-sm">
+        <div className="px-6 py-5 border-b border-slate-200">
           <div className="flex justify-between items-start gap-4 mb-2">
             <div className="flex-1">
-              <h3 className="text-lg font-bold text-white mb-1 group-hover:text-blue-300 transition-colors">
+              <h3 className="text-lg font-bold text-slate-800 mb-1 group-hover:text-primary transition-colors">
                 {title}
               </h3>
-              <p className="text-xs text-gray-400 leading-relaxed">
+              <p className="text-xs text-slate-600 leading-relaxed">
                 {description}
               </p>
             </div>
@@ -40,7 +40,7 @@ export const ChartWrapper: React.FC<ChartWrapperProps> = (props) => {
               {onExport && (
                 <button
                   onClick={onExport}
-                  className="p-2 rounded-lg bg-slate-700/50 hover:bg-slate-600 text-gray-400 hover:text-white transition-all duration-200"
+                  className="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-800 transition-all duration-200"
                   title="Descargar"
                 >
                   <Download className="w-4 h-4" />
@@ -60,19 +60,19 @@ export const ChartWrapper: React.FC<ChartWrapperProps> = (props) => {
         </div>
 
         {/* Insight Section */}
-        <div className="border-t border-slate-700/50 backdrop-blur-sm">
+        <div className="border-t border-slate-200">
           <button
             onClick={() => setExpanded(!expanded)}
             className={`
               w-full px-6 py-4 flex items-center gap-3 font-medium
               transition-all duration-200 group/insight
               ${expanded 
-                ? 'bg-blue-600/20 text-blue-300' 
-                : 'text-gray-400 hover:text-blue-300 hover:bg-slate-700/20'
+                ? 'bg-primary/10 text-blue-700' 
+                : 'text-slate-600 hover:text-primary hover:bg-slate-50'
               }
             `}
           >
-            <div className={`p-1.5 rounded-lg ${expanded ? 'bg-blue-500/30' : 'bg-slate-700/30'} transition-all`}>
+            <div className={`p-1.5 rounded-xl ${expanded ? 'bg-primary/20' : 'bg-slate-100'} transition-all`}>
               <Info className="w-4 h-4" />
             </div>
 
@@ -86,12 +86,12 @@ export const ChartWrapper: React.FC<ChartWrapperProps> = (props) => {
           </button>
 
           {expanded && (
-            <div className="px-6 py-5 bg-gradient-to-b from-blue-900/10 to-transparent border-t border-blue-700/20 animate-in fade-in slide-in-from-top-2">
+            <div className="px-6 py-5 bg-primary/5 border-t border-primary/10 animate-in fade-in slide-in-from-top-2">
               <div className="flex gap-4">
                 <div className="flex-shrink-0 pt-1">
-                  <div className="w-1 h-full bg-gradient-to-b from-blue-500 to-blue-600 rounded-full opacity-60" />
+                  <div className="w-1 h-full bg-gradient-to-b from-primary to-secondary rounded-full opacity-60" />
                 </div>
-                <p className="text-sm text-gray-300 leading-relaxed">
+                <p className="text-sm text-slate-700 leading-relaxed">
                   {insight}
                 </p>
               </div>

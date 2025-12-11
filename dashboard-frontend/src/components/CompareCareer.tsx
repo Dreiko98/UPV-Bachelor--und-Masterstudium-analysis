@@ -17,19 +17,19 @@ export const CompareCareer: React.FC<CompareCareerProps> = ({ titulations }) => 
 
   const clusterColors: Record<ClusterType, { bg: string; text: string; border: string }> = {
     [ClusterType.EXCELLENCE]: {
-      bg: 'bg-emerald-500/10',
-      text: 'text-emerald-400',
-      border: 'border-emerald-500/30',
+      bg: 'bg-secondary/10',
+      text: 'text-emerald-700',
+      border: 'border-secondary/30',
     },
     [ClusterType.INTERMEDIATE]: {
-      bg: 'bg-amber-500/10',
-      text: 'text-amber-400',
-      border: 'border-amber-500/30',
+      bg: 'bg-warning/10',
+      text: 'text-amber-700',
+      border: 'border-warning/30',
     },
     [ClusterType.RISK]: {
-      bg: 'bg-red-500/10',
-      text: 'text-red-400',
-      border: 'border-red-500/30',
+      bg: 'bg-danger/10',
+      text: 'text-red-700',
+      border: 'border-danger/30',
     },
   };
 
@@ -93,21 +93,21 @@ export const CompareCareer: React.FC<CompareCareerProps> = ({ titulations }) => 
     const isEqual = Math.abs(diff) < 0.1;
 
     return (
-      <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-700/50">
-        <div className="text-sm text-gray-400 mb-3">{label}</div>
+      <div className="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm">
+        <div className="text-sm text-slate-600 mb-3 font-medium">{label}</div>
         <div className="grid grid-cols-3 gap-4 items-center">
           {/* Career 1 Value */}
           <div className="text-center">
-            <div className="text-2xl font-bold text-white">
+            <div className="text-2xl font-bold text-slate-800">
               {value1.toFixed(1)}
-              <span className="text-sm text-gray-400 ml-1">{unit}</span>
+              <span className="text-sm text-slate-600 ml-1">{unit}</span>
             </div>
           </div>
 
           {/* Comparison Icon */}
           <div className="flex justify-center">
             {isEqual ? (
-              <div className="p-2 rounded-full bg-gray-500/20">
+              <Minus className="w-5 h-5 text-slate-400" />
                 <Minus className="w-5 h-5 text-gray-400" />
               </div>
             ) : isBetter ? (
@@ -123,9 +123,9 @@ export const CompareCareer: React.FC<CompareCareerProps> = ({ titulations }) => 
 
           {/* Career 2 Value */}
           <div className="text-center">
-            <div className="text-2xl font-bold text-white">
+            <div className="text-2xl font-bold text-slate-800">
               {value2.toFixed(1)}
-              <span className="text-sm text-gray-400 ml-1">{unit}</span>
+              <span className="text-sm text-slate-600 ml-1">{unit}</span>
             </div>
           </div>
         </div>
@@ -145,27 +145,27 @@ export const CompareCareer: React.FC<CompareCareerProps> = ({ titulations }) => 
     const colors = clusterColors[career.cluster];
     return (
       <div
-        className={`bg-gradient-to-br from-slate-800/80 to-slate-900/80 rounded-lg p-6 border ${colors.border} relative`}
+        className={`bg-white rounded-2xl p-6 border-2 ${colors.border} relative shadow-md`}
       >
         <button
           onClick={onClear}
-          className="absolute top-4 right-4 p-1 hover:bg-white/10 rounded-full transition"
+          className="absolute top-4 right-4 p-1 hover:bg-slate-100 rounded-full transition"
         >
-          <X className="w-5 h-5 text-gray-400 hover:text-white" />
+          <X className="w-5 h-5 text-slate-400 hover:text-slate-700" />
         </button>
         
         <div className="mb-4">
           <div className="flex items-center gap-2 mb-2">
-            <span className={`px-2 py-1 rounded text-xs font-semibold ${colors.bg} ${colors.text}`}>
+            <span className={`px-2 py-1 rounded-full text-xs font-semibold ${colors.bg} ${colors.text} border ${colors.border}`}>
               {clusterLabels[career.cluster]}
             </span>
-            <span className="px-2 py-1 rounded text-xs font-semibold bg-blue-500/10 text-blue-400">
+            <span className="px-2 py-1 rounded-full text-xs font-semibold bg-primary/10 text-blue-700 border border-primary/20">
               {career.degree}
             </span>
           </div>
-          <h3 className="text-xl font-bold text-white mb-1">{career.titulation}</h3>
-          <p className="text-sm text-gray-400">{career.center}</p>
-          <p className="text-xs text-gray-500 mt-1">Ranking: #{career.ranking}</p>
+          <h3 className="text-xl font-bold text-slate-800 mb-1">{career.titulation}</h3>
+          <p className="text-sm text-slate-600">{career.center}</p>
+          <p className="text-xs text-slate-500 mt-1 font-medium">Ranking: #{career.ranking}</p>
         </div>
       </div>
     );
@@ -193,7 +193,7 @@ export const CompareCareer: React.FC<CompareCareerProps> = ({ titulations }) => 
     return (
       <div className="relative">
         <div className="relative">
-          <Search className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
+          <Search className="absolute left-3 top-3 w-5 h-5 text-slate-400" />
           <input
             type="text"
             placeholder={placeholder}
@@ -203,12 +203,12 @@ export const CompareCareer: React.FC<CompareCareerProps> = ({ titulations }) => 
               setShowDropdown(true);
             }}
             onFocus={() => setShowDropdown(true)}
-            className="w-full pl-10 pr-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition"
+            className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-300 rounded-2xl text-slate-800 placeholder-slate-400 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition"
           />
         </div>
 
         {showDropdown && filteredResults.length > 0 && (
-          <div className="absolute z-10 w-full mt-2 bg-slate-800 border border-slate-700 rounded-lg shadow-xl max-h-80 overflow-y-auto">
+          <div className="absolute z-10 w-full mt-2 bg-white border border-slate-200 rounded-2xl shadow-xl max-h-80 overflow-y-auto">
             {filteredResults.map((tit) => (
               <button
                 key={`${tit.titulation}-${tit.center}`}
@@ -217,20 +217,20 @@ export const CompareCareer: React.FC<CompareCareerProps> = ({ titulations }) => 
                   setSearchQuery(tit.titulation);
                   setShowDropdown(false);
                 }}
-                className="w-full px-4 py-3 text-left hover:bg-slate-700/50 transition border-b border-slate-700/50 last:border-b-0"
+                className="w-full px-4 py-3 text-left hover:bg-slate-50 transition border-b border-slate-100 last:border-b-0"
               >
                 <div className="flex items-start justify-between gap-2">
                   <div className="flex-1 min-w-0">
-                    <div className="text-sm font-semibold text-white truncate">
+                    <div className="text-sm font-semibold text-slate-800 truncate">
                       {tit.titulation}
                     </div>
-                    <div className="text-xs text-gray-400">{tit.center}</div>
+                    <div className="text-xs text-slate-600">{tit.center}</div>
                   </div>
                   <div className="flex items-center gap-1 flex-shrink-0">
                     <span
-                      className={`px-2 py-1 rounded text-xs font-semibold ${
+                      className={`px-2 py-1 rounded-full text-xs font-semibold ${
                         clusterColors[tit.cluster].bg
-                      } ${clusterColors[tit.cluster].text}`}
+                      } ${clusterColors[tit.cluster].text} border ${clusterColors[tit.cluster].border}`}
                     >
                       {clusterLabels[tit.cluster]}
                     </span>
@@ -248,58 +248,58 @@ export const CompareCareer: React.FC<CompareCareerProps> = ({ titulations }) => 
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h2 className="text-2xl font-bold text-white mb-2">Comparador de Carreras</h2>
-        <p className="text-gray-400">
+        <h2 className="text-2xl font-bold text-slate-800 mb-2">Comparador de Carreras</h2>
+        <p className="text-slate-600">
           Selecciona dos titulaciones para comparar sus indicadores de desempeño
         </p>
       </div>
 
       {/* Degree Type Filter */}
-      <div className="bg-gradient-to-r from-slate-800/50 to-slate-900/50 rounded-lg border border-slate-700/50 p-4">
-        <label className="text-sm text-gray-400 mb-2 block">Filtrar por tipo:</label>
+      <div className="bg-white rounded-2xl border border-slate-200 p-4 shadow-md">
+        <label className="text-sm text-slate-600 mb-2 block font-medium">Filtrar por tipo:</label>
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => setDegreeFilter('all')}
-            className={`px-4 py-2 rounded-lg font-semibold transition ${
+            className={`px-4 py-2 rounded-xl font-semibold transition ${
               degreeFilter === 'all'
-                ? 'bg-blue-500 text-white'
-                : 'bg-slate-700/50 text-gray-300 hover:bg-slate-700'
+                ? 'bg-primary text-white shadow-md'
+                : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
             }`}
           >
             Todos
           </button>
           <button
             onClick={() => setDegreeFilter(DegreeType.GRADO)}
-            className={`px-4 py-2 rounded-lg font-semibold transition ${
+            className={`px-4 py-2 rounded-xl font-semibold transition ${
               degreeFilter === DegreeType.GRADO
-                ? 'bg-blue-500 text-white'
-                : 'bg-slate-700/50 text-gray-300 hover:bg-slate-700'
+                ? 'bg-primary text-white shadow-md'
+                : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
             }`}
           >
             Grado
           </button>
           <button
             onClick={() => setDegreeFilter(DegreeType.MASTER)}
-            className={`px-4 py-2 rounded-lg font-semibold transition ${
+            className={`px-4 py-2 rounded-xl font-semibold transition ${
               degreeFilter === DegreeType.MASTER
-                ? 'bg-blue-500 text-white'
-                : 'bg-slate-700/50 text-gray-300 hover:bg-slate-700'
+                ? 'bg-primary text-white shadow-md'
+                : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
             }`}
           >
             Máster
           </button>
           <button
             onClick={() => setDegreeFilter(DegreeType.DOBLE_GRADO)}
-            className={`px-4 py-2 rounded-lg font-semibold transition ${
+            className={`px-4 py-2 rounded-xl font-semibold transition ${
               degreeFilter === DegreeType.DOBLE_GRADO
-                ? 'bg-blue-500 text-white'
-                : 'bg-slate-700/50 text-gray-300 hover:bg-slate-700'
+                ? 'bg-primary text-white shadow-md'
+                : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
             }`}
           >
             Doble Grado
           </button>
         </div>
-        <p className="text-xs text-gray-500 mt-2">
+        <p className="text-xs text-slate-500 mt-2 font-medium">
           Titulaciones disponibles: {filteredTitulations.length}
         </p>
       </div>
@@ -307,7 +307,7 @@ export const CompareCareer: React.FC<CompareCareerProps> = ({ titulations }) => 
       {/* Search Boxes */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label className="text-sm font-semibold text-gray-300 mb-2 block">
+          <label className="text-sm font-semibold text-slate-700 mb-2 block">
             Primera Carrera
           </label>
           <SearchBox
@@ -323,7 +323,7 @@ export const CompareCareer: React.FC<CompareCareerProps> = ({ titulations }) => 
         </div>
 
         <div>
-          <label className="text-sm font-semibold text-gray-300 mb-2 block">
+          <label className="text-sm font-semibold text-slate-700 mb-2 block">
             Segunda Carrera
           </label>
           <SearchBox

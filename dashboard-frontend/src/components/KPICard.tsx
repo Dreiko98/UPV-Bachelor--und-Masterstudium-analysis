@@ -18,28 +18,28 @@ interface StatusConfig {
 export const KPICard: React.FC<KPICardProps> = ({ kpi }) => {
   const statusConfig: Record<Status, StatusConfig> = {
     [Status.OK]: {
-      bg: 'from-emerald-600/40 to-teal-600/20',
-      border: 'border-emerald-500/50',
-      accent: 'text-emerald-400',
-      accentBg: 'bg-emerald-900/20',
+      bg: 'bg-white',
+      border: 'border-secondary/30',
+      accent: 'text-emerald-700',
+      accentBg: 'bg-secondary/10',
       icon: CheckCircle,
-      badge: 'bg-emerald-500/20 text-emerald-300',
+      badge: 'bg-secondary/20 text-emerald-700',
     },
     [Status.WARNING]: {
-      bg: 'from-amber-600/40 to-orange-600/20',
-      border: 'border-amber-500/50',
-      accent: 'text-amber-400',
-      accentBg: 'bg-amber-900/20',
+      bg: 'bg-white',
+      border: 'border-warning/30',
+      accent: 'text-amber-700',
+      accentBg: 'bg-warning/10',
       icon: AlertCircle,
-      badge: 'bg-amber-500/20 text-amber-300',
+      badge: 'bg-warning/20 text-amber-700',
     },
     [Status.CRITICAL]: {
-      bg: 'from-red-600/40 to-pink-600/20',
-      border: 'border-red-500/50',
-      accent: 'text-red-400',
-      accentBg: 'bg-red-900/20',
+      bg: 'bg-white',
+      border: 'border-danger/30',
+      accent: 'text-red-700',
+      accentBg: 'bg-danger/10',
       icon: AlertCircle,
-      badge: 'bg-red-500/20 text-red-300',
+      badge: 'bg-danger/20 text-red-700',
     },
   };
 
@@ -56,34 +56,26 @@ export const KPICard: React.FC<KPICardProps> = ({ kpi }) => {
 
   return (
     <div className={`
-      relative group overflow-hidden rounded-xl border-2 ${config.border}
-      bg-gradient-to-br ${config.bg} 
+      relative group overflow-hidden rounded-2xl border-2 ${config.border}
+      ${config.bg}
       p-6 transition-all duration-300 cursor-pointer
-      hover:shadow-2xl hover:shadow-emerald-500/20 hover:border-opacity-100
-      backdrop-blur-sm
+      hover:shadow-xl shadow-md
     `}>
-      {/* Background glow effect */}
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-300"
-        style={{
-          background: 'radial-gradient(circle at top-right, currentColor, transparent 80%)',
-        }}
-      />
-
-      {/* Corner accent */}
-      <div className={`absolute -top-8 -right-8 w-24 h-24 rounded-full ${config.accentBg} blur-3xl opacity-30 group-hover:opacity-50 transition-opacity`} />
+      {/* Corner accent - sutil para light mode */}
+      <div className={`absolute -top-8 -right-8 w-24 h-24 rounded-full ${config.accentBg} blur-2xl opacity-20 group-hover:opacity-30 transition-opacity`} />
 
       <div className="relative z-10">
         {/* Header */}
         <div className="flex items-start justify-between mb-6">
           <div className="flex-1">
-            <p className="text-xs font-semibold uppercase text-gray-400 tracking-widest mb-1">
+            <p className="text-xs font-semibold uppercase text-slate-500 tracking-widest mb-1">
               {kpi.label}
             </p>
             {kpi.description && (
-              <p className="text-xs text-gray-500 line-clamp-1">{kpi.description}</p>
+              <p className="text-xs text-slate-400 line-clamp-1">{kpi.description}</p>
             )}
           </div>
-          <div className={`flex-shrink-0 p-2 ${config.accentBg} rounded-lg`}>
+          <div className={`flex-shrink-0 p-2 ${config.accentBg} rounded-xl`}>
             <IconComponent className={`w-5 h-5 ${config.accent}`} />
           </div>
         </div>
@@ -91,15 +83,15 @@ export const KPICard: React.FC<KPICardProps> = ({ kpi }) => {
         {/* Main Value */}
         <div className="mb-6">
           <div className={`flex items-baseline gap-2`}>
-            <span className={`text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r ${
-              kpi.status === Status.OK ? 'from-emerald-300 to-teal-400' :
-              kpi.status === Status.WARNING ? 'from-amber-300 to-orange-400' :
-              'from-red-300 to-pink-400'
+            <span className={`text-5xl font-bold ${
+              kpi.status === Status.OK ? 'text-emerald-600' :
+              kpi.status === Status.WARNING ? 'text-amber-600' :
+              'text-red-600'
             }`}>
               {kpi.value}
             </span>
             {kpi.unit && (
-              <span className={`text-lg font-semibold ${config.accent} opacity-75`}>
+              <span className={`text-lg font-semibold ${config.accent}`}>
                 {kpi.unit}
               </span>
             )}
@@ -109,10 +101,10 @@ export const KPICard: React.FC<KPICardProps> = ({ kpi }) => {
         {/* Trend */}
         {kpi.trend !== undefined && kpi.trend !== 0 && (
           <div className={`
-            flex items-center gap-2 px-3 py-2 rounded-lg
+            flex items-center gap-2 px-3 py-2 rounded-xl
             ${kpi.trend > 0 
-              ? 'bg-green-500/10 text-green-400' 
-              : 'bg-red-500/10 text-red-400'
+              ? 'bg-secondary/15 text-emerald-700' 
+              : 'bg-danger/15 text-red-700'
             }
             text-sm font-medium
           `}>
@@ -125,19 +117,19 @@ export const KPICard: React.FC<KPICardProps> = ({ kpi }) => {
         )}
 
         {/* Progress bar */}
-        <div className="mt-6 pt-4 border-t border-white/10">
+        <div className="mt-6 pt-4 border-t border-slate-200">
           <div className="flex justify-between items-center mb-2">
-            <span className="text-xs text-gray-500">Progreso</span>
+            <span className="text-xs text-slate-500 font-medium">Progreso</span>
             <span className={`text-xs font-semibold ${config.accent}`}>
               {Math.min(100, Math.round((parseFloat(kpi.value.toString()) / 10) * 100))}%
             </span>
           </div>
-          <div className="w-full h-2 bg-slate-700/30 rounded-full overflow-hidden">
+          <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
             <div
               className={`h-full rounded-full transition-all duration-500 ${
-                kpi.status === Status.OK ? 'bg-gradient-to-r from-emerald-500 to-teal-500' :
-                kpi.status === Status.WARNING ? 'bg-gradient-to-r from-amber-500 to-orange-500' :
-                'bg-gradient-to-r from-red-500 to-pink-500'
+                kpi.status === Status.OK ? 'bg-gradient-to-r from-secondary to-emerald-400' :
+                kpi.status === Status.WARNING ? 'bg-gradient-to-r from-warning to-yellow-400' :
+                'bg-gradient-to-r from-danger to-red-400'
               }`}
               style={{ width: `${Math.min(100, Math.round((parseFloat(kpi.value.toString()) / 10) * 100))}%` }}
             />
