@@ -108,15 +108,13 @@ export const CompareCareer: React.FC<CompareCareerProps> = ({ titulations }) => 
           <div className="flex justify-center">
             {isEqual ? (
               <Minus className="w-5 h-5 text-slate-400" />
-                <Minus className="w-5 h-5 text-gray-400" />
-              </div>
             ) : isBetter ? (
               <div className="p-2 rounded-full bg-emerald-500/20">
-                <TrendingUp className="w-5 h-5 text-emerald-400" />
+                <TrendingUp className="w-5 h-5 text-emerald-600" />
               </div>
             ) : (
               <div className="p-2 rounded-full bg-red-500/20">
-                <TrendingDown className="w-5 h-5 text-red-400" />
+                <TrendingDown className="w-5 h-5 text-red-600" />
               </div>
             )}
           </div>
