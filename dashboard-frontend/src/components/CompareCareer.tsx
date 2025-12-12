@@ -210,7 +210,8 @@ export const CompareCareer: React.FC<CompareCareerProps> = ({ titulations }) => 
             {filteredResults.map((tit) => (
               <button
                 key={`${tit.titulation}-${tit.center}`}
-                onClick={() => {
+                onMouseDown={(e) => {
+                  e.preventDefault();
                   setSelectedCareer(tit);
                   setSearchQuery(tit.titulation);
                   setShowDropdown(false);
