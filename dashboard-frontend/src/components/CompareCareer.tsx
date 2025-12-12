@@ -188,11 +188,14 @@ export const CompareCareer: React.FC<CompareCareerProps> = ({ titulations }) => 
     filteredResults: ITitulationPerformance[];
     placeholder: string;
   }) => {
+    const inputRef = React.useRef<HTMLInputElement>(null);
+
     return (
       <div className="relative">
         <div className="relative">
           <Search className="absolute left-3 top-3 w-5 h-5 text-slate-400" />
           <input
+            ref={inputRef}
             type="text"
             placeholder={placeholder}
             value={searchQuery}
@@ -201,6 +204,14 @@ export const CompareCareer: React.FC<CompareCareerProps> = ({ titulations }) => 
               setShowDropdown(true);
             }}
             onFocus={() => setShowDropdown(true)}
+            onBlur={(e) => {
+              // Delay closing to allow click event to fire
+              setTimeout(() => {
+                if (!e.currentTarget.contains(document.activeElement)) {
+                  setShowDropdown(false);
+                }
+              }, 200);
+            }}
             className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-300 rounded-2xl text-slate-800 placeholder-slate-400 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition"
           />
         </div>
@@ -215,6 +226,8 @@ export const CompareCareer: React.FC<CompareCareerProps> = ({ titulations }) => 
                   setSelectedCareer(tit);
                   setSearchQuery(tit.titulation);
                   setShowDropdown(false);
+                  // Return focus to input
+                  setTimeout(() => inputRef.current?.focus(), 0);
                 }}
                 className="w-full px-4 py-3 text-left hover:bg-slate-50 transition border-b border-slate-100 last:border-b-0"
               >
